@@ -1,4 +1,5 @@
 export const GameConfig = {
-  gameName: "NERA",
+  gameName: "Unicellular Battle",
   playerHealth: 100,
+  playerSpeed: 100, // 0-1000
 };

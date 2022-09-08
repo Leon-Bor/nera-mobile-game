@@ -2,9 +2,10 @@ import Phaser from "phaser";
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { fromEvent, takeUntil } from "rxjs";
+import { phaserGame } from "../utils/phaser";
 
 export const useScreenResolution = () => {
-  const scaleManager: Phaser.Scale.ScaleManager = (window as any).game.scale;
+  const { scaleManager } = phaserGame();
   const [scale, setScale] = useState(
     scaleManager.displaySize.width / scaleManager.baseSize.width
   );

@@ -15,8 +15,8 @@ export class LoadingScene extends Scene {
     console.log("loading");
     this.load.baseURL = "assets/";
 
-    this.load.image(`gameBullet`, `sprites/gameBullet.png`);
-    this.load.image(`gameField`, `sprites/gameField.png`);
-    this.load.image(`gameCircle`, `sprites/gamePlayer.png`);
+    this.load.image(`bullet`, `sprites/bullet.png`);
+    this.load.image(`matchfield`, `sprites/matchfield.png`);
+    this.load.image(`player`, `sprites/player.png`);
   }
 }

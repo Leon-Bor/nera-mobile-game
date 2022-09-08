@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { useScreenResolution } from "./hooks/useScreenResolution";
-import "./styles/main.scss";
+import { useScreenResolution } from "../hooks/useScreenResolution";
+import "../styles/main.scss";
 
 export const App = () => {
   const { size, scale } = useScreenResolution();
