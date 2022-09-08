@@ -1,33 +1,28 @@
-import { GameObjects, Scene } from "phaser"; 
-import { Scenes } from "src/game.config";
-import { SceneService } from "src/services/scene.service";
-import { autoInjectable, instanceCachingFactory } from "tsyringe";  
-import { NetworkService } from "../services/network.service"; 
- 
-@autoInjectable()
-export class GameScene extends Scene {  
-  
-  public constructor(
-    public sceneService: SceneService, 
-    public networkService: NetworkService, 
-  ) {
+import { Scene } from "phaser";
+import { Scenes, setActiveScene } from "../state/reducers/scene.reducer";
+import { state$, store } from "../state/store";
+
+export class GameScene extends Scene {
+  public constructor() {
     super(Scenes.GameScene);
   }
 
   preload(): void {
-    this.sceneService.setCurrentScene(this); 
+    store.dispatch(setActiveScene({ name: Scenes.GameScene, scene: this }));
   }
 
-  create(): void { 
+  create(): void {
+    console.log("now game scene");
+    state$().subscribe(({ ui }) => {
+      console.log(ui);
+    });
 
     this.input.on(
       Phaser.Input.Events.POINTER_DOWN,
       () => {
-        console.log("pointer down")
+        console.log("pointer down");
       },
       this
     );
- 
-  } 
- 
+  }
 }

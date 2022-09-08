@@ -1,28 +1,22 @@
-import { GameObjects, Scene } from "phaser";
-import { SceneService } from "../services/scene.service";
-import { autoInjectable } from "tsyringe"; 
-import { Scenes } from "src/game.config";
+import { Scene } from "phaser";
+import { Scenes, setActiveScene } from "../state/reducers/scene.reducer";
+import { store } from "../state/store";
 
-@autoInjectable()
 export class LoadingScene extends Scene {
-  private king!: GameObjects.Sprite;
-
-  constructor(public sceneService: SceneService) {
+  constructor() {
     super(Scenes.LoadingScene);
   }
   create(): void {
     this.scene.start(Scenes.GameScene);
   }
   preload(): void {
-    this.sceneService.setCurrentScene(this);
+    store.dispatch(setActiveScene({ name: Scenes.LoadingScene, scene: this }));
+
     console.log("loading");
     this.load.baseURL = "assets/";
 
- 
     this.load.image(`gameBullet`, `sprites/gameBullet.png`);
     this.load.image(`gameField`, `sprites/gameField.png`);
-    this.load.image(`gameCircle`, `sprites/gameCircle.png`);
-
-    // this.load.audio("reelStop", "sounds/reel-spin-end.mp3");
+    this.load.image(`gameCircle`, `sprites/gamePlayer.png`);
   }
 }

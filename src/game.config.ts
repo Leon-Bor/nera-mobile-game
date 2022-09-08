@@ -1,10 +1,4 @@
- 
-export enum Scenes {
-  LoadingScene ="LoadingScene",
-  GameScene ="GameScene"
-}
-
-export const GameConfig ={
+export const GameConfig = {
   gameName: "NERA",
   playerHealth: 100,
-}
+};

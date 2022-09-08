@@ -14,6 +14,7 @@ const babelOptions = {
         modules: false,
       },
     ],
+    "@babel/preset-react",
   ],
 };
 const config = {
@@ -50,13 +51,20 @@ const config = {
         ],
       },
       {
-        test: /\.css$/,
-        use: ["style-loader", "css-loader"],
+        test: /\.s[ac]ss$/i,
+        use: [
+          // Creates `style` nodes from JS strings
+          "style-loader",
+          // Translates CSS into CommonJS
+          "css-loader",
+          // Compiles Sass to CSS
+          "sass-loader",
+        ],
       },
     ],
   },
   resolve: {
-    extensions: [".ts", ".js", ".json"],
+    extensions: [".ts", ".js", ".tsx", ".json"],
   },
   optimization: {
     minimize: true,
@@ -96,8 +104,8 @@ const config = {
       directory: path.join(__dirname, "dist"),
     },
     compress: false,
-    port: 9000,
-    watchFiles: ["./assets/*"],
+    port: 8080,
+    watchFiles: ["./*"],
     liveReload: true,
   },
 };
