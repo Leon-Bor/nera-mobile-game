@@ -1,4 +1,5 @@
-import { Scene } from "phaser";
+import { GameObjects, Scene } from "phaser";
+import { Enemy } from "../objects/enemy.sprite";
 import { Player } from "../objects/player.sprite";
 import { Scenes, setActiveScene } from "../state/reducers/scene.reducer";
 import { state$, store } from "../state/store";
@@ -7,6 +8,7 @@ import { phaserGame } from "../utils/phaser";
 export class GameScene extends Scene {
   private matchfield!: Phaser.GameObjects.Sprite;
   private player!: Player;
+  private enemy!: Enemy;
 
   public constructor() {
     super(Scenes.GameScene);
@@ -23,7 +25,8 @@ export class GameScene extends Scene {
     this.matchfield.setScale(1.5);
     this.children.add(this.matchfield);
 
-    this.player = new Player("player");
+    this.player = new Player();
+    this.enemy = new Enemy();
   }
 
   create(): void {
