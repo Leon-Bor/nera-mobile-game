@@ -10,4 +10,10 @@ export class Enemy extends Player {
     super("enemy");
     this.setPosition(this.x, scaleManager.baseSize.height / 4);
   }
+
+  protected override init(): void {
+    this.addClickableBoundaries(50, 50);
+    this.addMovementBoundaries(50, 50);
+    this.activatePlayerInput();
+  }
 }

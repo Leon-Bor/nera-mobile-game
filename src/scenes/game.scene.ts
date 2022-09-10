@@ -1,4 +1,4 @@
-import { GameObjects, Scene } from "phaser";
+import { GameObjects, Geom, Scene } from "phaser";
 import { Enemy } from "../objects/enemy.sprite";
 import { Player } from "../objects/player.sprite";
 import { Scenes, setActiveScene } from "../state/reducers/scene.reducer";
@@ -35,13 +35,13 @@ export class GameScene extends Scene {
       console.log(ui);
     });
 
-    this.input.on(
-      Phaser.Input.Events.POINTER_DOWN,
-      (pointer: Phaser.Input.Pointer) => {
-        console.log("pointer down", pointer);
-        this.player.moveTo(pointer.x, pointer.y);
-      },
-      this
-    );
+    // this.input.on(
+    //   Phaser.Input.Events.POINTER_DOWN,
+    //   (pointer: Phaser.Input.Pointer) => {
+    //     console.log("pointer down", pointer);
+    //     this.player.moveTo(pointer.x, pointer.y);
+    //   },
+    //   this
+    // );
   }
 }

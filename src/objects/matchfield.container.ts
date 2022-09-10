@@ -1,9 +1,11 @@
-import { GameObjects } from "phaser";
+import { GameObjects, Geom } from "phaser";
 import { GameConfig } from "../game.config";
 import { getState } from "../state/store";
 import { phaserGame } from "../utils/phaser";
 
 export class Matchfield extends GameObjects.Container {
+  public static size = new Geom.Rectangle(0, 0, 980, 910);
+
   private background!: Phaser.GameObjects.Sprite;
 
   public constructor() {
