@@ -18,6 +18,9 @@ const phaserConfig: Types.Core.GameConfig = {
   type: Phaser.WEBGL,
   parent: "game",
   backgroundColor: "#101010",
+  input: {
+    activePointers: 4,
+  },
   scale: {
     mode: Phaser.Scale.ScaleModes.FIT,
     autoCenter: Phaser.Scale.CENTER_BOTH,

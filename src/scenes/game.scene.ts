@@ -37,17 +37,7 @@ export class GameScene extends Scene {
     state$().subscribe(({ ui }) => {
       console.log(ui);
     });
-
     this.player.startAutoFire();
     this.enemy.startAutoFire();
-
-    // this.input.on(
-    //   Phaser.Input.Events.POINTER_DOWN,
-    //   (pointer: Phaser.Input.Pointer) => {
-    //     console.log("pointer down", pointer);
-    //     this.player.moveTo(pointer.x, pointer.y);
-    //   },
-    //   this
-    // );
   }
 }

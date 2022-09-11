@@ -1,4 +1,5 @@
 import { Game, GameObjects, Geom } from "phaser";
+import { BehaviorSubject } from "rxjs";
 import { GameConfig } from "../game.config";
 import { Scenes } from "../state/reducers/scene.reducer";
 import { phaserGame } from "../utils/phaser";
@@ -10,7 +11,7 @@ export class Player
   extends Phaser.Physics.Arcade.Sprite
   implements Phaser.Types.Physics.Arcade.GameObjectWithBody
 {
-  protected health = GameConfig.playerHealth;
+  protected health = new BehaviorSubject(GameConfig.playerHealth);
   protected velocity = GameConfig.playerVelocity;
   protected bulletVelocity = GameConfig.bulletVelocity;
   protected fireFrquency = GameConfig.playerFireFrquency;
@@ -70,9 +71,9 @@ export class Player
   }
 
   private onPlayerHit(): void {
-    this.health = this.health - this.enemyTarget.bulletDamage;
+    this.health.next(this.health.value - this.enemyTarget.bulletDamage);
 
-    console.log(`${this.name} health: ${this.health}`);
+    console.log(`${this.name} health: ${this.health.value}`);
   }
 
   public startAutoFire(): void {
@@ -82,7 +83,7 @@ export class Player
     }
     if (this.autoFireInterval) clearInterval(this.autoFireInterval);
     this.autoFireInterval = setInterval(() => {
-      this.bullets.fireBulletAt(this, this.enemyTarget);
+      this.fire();
     }, this.fireFrquency);
   }
 
@@ -161,9 +162,14 @@ export class Player
       x: x,
       ease: "Linear",
       onComplete: () => {
+        this.fire();
         if (GameConfig.playerStopFireWhileMoving) this.startAutoFire();
       },
     });
+  }
+
+  private fire(): void {
+    this.bullets.fireBulletAt(this, this.enemyTarget);
   }
 
   public set enemyTarget(enemyTarget: Player) {
