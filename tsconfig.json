@@ -16,12 +16,12 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "typeRoots": [
-      "packages/game/@types",
+      // "packages/game/@types",
       "node_modules/@types",
       "node_module/phaser/types"
-    ],
-    "types": ["Phaser"]
+    ]
+    // "types": ["Phaser"]
   },
-  "include": ["./index.d.ts", "**/*.ts"],
+  "include": ["**/*.ts"],
   "exclude": ["node_modules", "./dist/"]
 }

@@ -18,7 +18,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
   protected playerMoveTween!: Phaser.Tweens.Tween;
   protected bullets: Bullets;
 
-  private autoFireInterval!: number;
+  private autoFireInterval!: ReturnType<typeof setInterval>;
 
   private _enemyTarget!: Player;
 

@@ -4,7 +4,9 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const isProd = process.env.NODE_ENV === "production";
+const { DefinePlugin } = require("webpack");
+const isProduction = process.env.NODE_ENV === "production";
+const environment = isProduction ? "production" : "development"
 const babelOptions = {
   presets: [
     [
@@ -18,7 +20,7 @@ const babelOptions = {
   ],
 };
 const config = {
-  mode: isProd ? "production" : "development",
+  mode: environment,
   context: path.resolve(__dirname, "./src"),
   entry: "./index.ts",
 
@@ -98,6 +100,9 @@ const config = {
         },
       ],
     }),
+    new DefinePlugin({
+      ENVIRONMENT: environment
+    })
   ],
   devServer: {
     static: {
