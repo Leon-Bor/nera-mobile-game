@@ -4,9 +4,7 @@ const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
-const { DefinePlugin } = require("webpack");
-const { GitRevisionPlugin } = require('git-revision-webpack-plugin')
-const gitRevisionPlugin = new GitRevisionPlugin();
+const { DefinePlugin } = require("webpack");  
 const isProduction = process.env.NODE_ENV === "production";
 const environment = isProduction ? "production" : "development"
 console.log(`Environment: ${environment}`)
@@ -88,7 +86,7 @@ const config = {
       }),
     ],
   },
-  plugins: [gitRevisionPlugin,
+  plugins: [  
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: "index.html",
@@ -108,10 +106,7 @@ const config = {
       ],
     }),
     new DefinePlugin({
-      ENVIRONMENT: JSON.stringify(environment),
-      GIT_VERSION: JSON.stringify(gitRevisionPlugin.version()),
-      GIT_COMMIT_HASH: JSON.stringify(gitRevisionPlugin.commithash()),
-      GIT_BRANCH: JSON.stringify(gitRevisionPlugin.branch()),
+      ENVIRONMENT: JSON.stringify(environment), 
     })
   ],
   devServer: {
