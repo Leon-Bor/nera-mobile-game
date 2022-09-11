@@ -27,7 +27,7 @@ export class Player
   private _enemyTarget!: Player;
   private _bulletDamage = GameConfig.bulletDamage;
 
-  public constructor(name: string = "player") {
+  public constructor(name: string = "leon") {
     const { scaleManager, sceneManager } = phaserGame();
     super(
       sceneManager.getScene(Scenes.GameScene),
@@ -74,6 +74,25 @@ export class Player
     this.health.next(this.health.value - this.enemyTarget.bulletDamage);
 
     console.log(`${this.name} health: ${this.health.value}`);
+
+    if (this.health.value < 0) {
+      this.onPlayerLost();
+    }
+  }
+
+  private onPlayerLost() {
+    const { scaleManager, sceneManager } = phaserGame();
+    const lostGameText = this.scene.add.text(
+      scaleManager.baseSize.width / 2,
+      scaleManager.baseSize.height / 2,
+      `${this.name} lost the game`
+    );
+    lostGameText.setColor("#ff0000");
+    lostGameText.setFontSize(50);
+
+    lostGameText.setOrigin(0.5, 0.5);
+
+    sceneManager.pause(Scenes.GameScene);
   }
 
   public startAutoFire(): void {

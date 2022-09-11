@@ -7,7 +7,7 @@ import { Player } from "./player.sprite";
 export class Enemy extends Player {
   public constructor() {
     const { scaleManager } = phaserGame();
-    super("enemy");
+    super("rieke");
     this.setPosition(this.x, scaleManager.baseSize.height / 4);
   }
 

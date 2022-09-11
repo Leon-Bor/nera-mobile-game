@@ -17,7 +17,7 @@ export class Bullets extends Phaser.Physics.Arcade.Group {
     this.velocity = velocity;
 
     this.createMultiple({
-      frameQuantity: 5,
+      frameQuantity: GameConfig.bulletsPerPlayer,
       key: `${name}Bullets`,
       active: false,
       visible: false,

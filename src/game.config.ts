@@ -9,4 +9,5 @@ export const GameConfig = {
   playerFireFrquency: 800, // in ms
   bulletVelocity: 500,
   bulletDamage: 5,
+  bulletsPerPlayer: 10,
 };
