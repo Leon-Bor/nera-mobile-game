@@ -45,5 +45,5 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v3
         with:
-          tags: ${{ env.REGISTRY }}/leon-bor/slot-machine:latest
+          tags: ${{ env.REGISTRY }}/leon-bor/unicellular-battle-game:latest
           push: ${{ github.event_name != 'pull_request' }}
