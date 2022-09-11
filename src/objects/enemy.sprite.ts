@@ -5,10 +5,16 @@ import { phaserGame } from "../utils/phaser";
 import { Player } from "./player.sprite";
 
 export class Enemy extends Player {
+  tintColor = 0x00ff00;
+
   public constructor() {
     const { scaleManager } = phaserGame();
-    super("rieke");
+    super("enemy");
+
     this.setPosition(this.x, scaleManager.baseSize.height / 4);
+
+    this.setTint(this.tintColor);
+    this.bullets.setTint(this.tintColor);
   }
 
   protected override init(): void {

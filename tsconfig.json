@@ -19,8 +19,9 @@
       // "packages/game/@types",
       "node_modules/@types",
       "node_module/phaser/types"
-    ]
+    ],
     // "types": ["Phaser"]
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
   "include": ["**/*.ts"],
   "exclude": ["node_modules", "./dist/"]

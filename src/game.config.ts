@@ -2,7 +2,7 @@ console.log(`Environment: ${ENVIRONMENT} `);
 
 export const GameConfig = {
   gameName: "Unicellular Battle",
-  debug: ENVIRONMENT === "production" ? false : true,
+  debug: ENVIRONMENT === "production" ? false : false,
   playerStopFireWhileMoving: false,
   playerHealth: 100,
   playerVelocity: 100, // 0-1000

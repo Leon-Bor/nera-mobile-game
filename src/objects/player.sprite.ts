@@ -11,10 +11,11 @@ export class Player
   extends Phaser.Physics.Arcade.Sprite
   implements Phaser.Types.Physics.Arcade.GameObjectWithBody
 {
-  protected health = new BehaviorSubject(GameConfig.playerHealth);
+  protected _health = new BehaviorSubject(GameConfig.playerHealth);
   protected velocity = GameConfig.playerVelocity;
   protected bulletVelocity = GameConfig.bulletVelocity;
   protected fireFrquency = GameConfig.playerFireFrquency;
+  protected tintColor: number | undefined = 0x00ff00;
 
   protected movementBoundaires!: GameObjects.Rectangle;
   protected clickableBoundaires!: GameObjects.Rectangle;
@@ -27,7 +28,7 @@ export class Player
   private _enemyTarget!: Player;
   private _bulletDamage = GameConfig.bulletDamage;
 
-  public constructor(name: string = "leon") {
+  public constructor(name: string = "player") {
     const { scaleManager, sceneManager } = phaserGame();
     super(
       sceneManager.getScene(Scenes.GameScene),
@@ -71,11 +72,11 @@ export class Player
   }
 
   private onPlayerHit(): void {
-    this.health.next(this.health.value - this.enemyTarget.bulletDamage);
+    this._health.next(this._health.value - this.enemyTarget.bulletDamage);
 
-    console.log(`${this.name} health: ${this.health.value}`);
+    console.log(`${this.name} health: ${this._health.value}`);
 
-    if (this.health.value < 0) {
+    if (this._health.value <= 0) {
       this.onPlayerLost();
     }
   }
@@ -202,5 +203,9 @@ export class Player
 
   public get enemyTarget(): Player {
     return this._enemyTarget;
+  }
+
+  public get health(): BehaviorSubject<number> {
+    return this._health;
   }
 }

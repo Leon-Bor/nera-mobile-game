@@ -1,0 +1,17 @@
+.healthBar {
+  color: white;
+  font-size: 70px;
+  font-family: var(--font-family);
+  position: absolute;
+  left: 5%;
+  top: 48%;
+  transform: translate(0%, -50%) rotate(180deg);
+
+  &.bottom {
+    left: unset;
+    top: unset;
+    right: 5%;
+    bottom: 48%;
+    transform: translate(0%, 50%) rotate(0deg);
+  }
+}

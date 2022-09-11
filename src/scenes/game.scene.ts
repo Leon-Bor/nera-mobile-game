@@ -1,6 +1,7 @@
 import { GameObjects, Geom, Scene } from "phaser";
 import { Enemy } from "../objects/enemy.sprite";
 import { Player } from "../objects/player.sprite";
+import { setEnemy, setPlayer } from "../state/reducers/game.reducer";
 import { Scenes, setActiveScene } from "../state/reducers/scene.reducer";
 import { state$, store } from "../state/store";
 import { phaserGame } from "../utils/phaser";
@@ -30,6 +31,9 @@ export class GameScene extends Scene {
 
     this.player.enemyTarget = this.enemy;
     this.enemy.enemyTarget = this.player;
+
+    store.dispatch(setPlayer(this.player));
+    store.dispatch(setEnemy(this.enemy));
   }
 
   create(): void {
