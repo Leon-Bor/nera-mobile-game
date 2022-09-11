@@ -1,4 +1,6 @@
-console.log(`Environment: ${ENVIRONMENT}`);
+console.log(
+  `Environment: ${ENVIRONMENT} ${GIT_VERSION} ${GIT_COMMIT_HASH} ${GIT_BRANCH}`
+);
 
 export const GameConfig = {
   gameName: "Unicellular Battle",

@@ -21,6 +21,7 @@
   "homepage": "https://github.com/Leon-Bor/game#readme",
   "dependencies": {
     "@reduxjs/toolkit": "^1.8.5",
+    "git-revision-webpack-plugin": "^5.0.0",
     "phaser": "^3.55.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
