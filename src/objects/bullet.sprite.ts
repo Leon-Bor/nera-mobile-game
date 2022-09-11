@@ -5,7 +5,12 @@ import { getState } from "../state/store";
 import { phaserGame } from "../utils/phaser";
 import { Player } from "./player.sprite";
 
-export class Bullet extends Phaser.Physics.Arcade.Sprite {
+export class Bullet
+  extends Phaser.Physics.Arcade.Sprite
+  implements Phaser.Types.Physics.Arcade.GameObjectWithBody
+{
+  public static hitboxSize = new Geom.Rectangle(0, 0, 5, 5);
+
   public constructor() {
     const { sceneManager } = phaserGame();
     super(sceneManager.getScene(Scenes.GameScene), 0, 0, "bullet");
@@ -34,10 +39,11 @@ export class Bullet extends Phaser.Physics.Arcade.Sprite {
     }
   }
 
-  removeBullet() {
+  disableBullet() {
     if (this.active === true) {
       this.setVisible(false);
       this.setActive(false);
+      this.body.enable = false;
     }
   }
 }

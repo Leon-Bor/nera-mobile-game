@@ -6,7 +6,10 @@ import { Bullet } from "./bullet.sprite";
 import { Bullets } from "./bullets.group";
 import { Matchfield } from "./matchfield.container";
 
-export class Player extends Phaser.Physics.Arcade.Sprite {
+export class Player
+  extends Phaser.Physics.Arcade.Sprite
+  implements Phaser.Types.Physics.Arcade.GameObjectWithBody
+{
   protected health = GameConfig.playerHealth;
   protected velocity = GameConfig.playerVelocity;
   protected bulletVelocity = GameConfig.bulletVelocity;
@@ -21,6 +24,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
   private autoFireInterval!: ReturnType<typeof setInterval>;
 
   private _enemyTarget!: Player;
+  private _bulletDamage = GameConfig.bulletDamage;
 
   public constructor(name: string = "player") {
     const { scaleManager, sceneManager } = phaserGame();
@@ -41,15 +45,6 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
     this.init();
   }
 
-  public set enemyTarget(enemyTarget: Player) {
-    this._enemyTarget = enemyTarget;
-    this.enableCollision();
-  }
-
-  public get enemyTarget(): Player {
-    return this._enemyTarget;
-  }
-
   protected init(): void {
     this.addClickableBoundaries();
     this.addMovementBoundaries();
@@ -61,21 +56,23 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
 
     this.scene.physics.add.existing(this, false);
     this.body.immovable = true;
-    this.body.setCircle(this.playerRadius - 35, 10, 10);
+    this.body.setCircle(this.playerRadius - 38, 15, 15);
 
-    this.scene.physics.add.collider(this, this.enemyTarget.bullets);
-
-    this.scene.physics.add.overlap(
-      this,
-      this.enemyTarget.bullets,
-      (player, bullet) => this.onEnemyCollision(player as any, bullet as any)
+    this.scene.physics.add.collider(this, this.enemyTarget.bullets, (p, b) =>
+      this.onPlayerBulletCollision(p as Player, b as Bullet)
     );
-
-    // this.body.setCircle(this.playerRadius);
   }
 
-  private onEnemyCollision(player: Player, bullet: Bullet) {
-    bullet.removeBullet();
+  private onPlayerBulletCollision(player: Player, bullet: Bullet) {
+    bullet.disableBullet();
+    this.onPlayerHit();
+    return false;
+  }
+
+  private onPlayerHit(): void {
+    this.health = this.health - this.enemyTarget.bulletDamage;
+
+    console.log(`${this.name} health: ${this.health}`);
   }
 
   public startAutoFire(): void {
@@ -153,7 +150,7 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
       this.playerMoveTween.stop();
     }
 
-    this.stopAutoFire();
+    if (GameConfig.playerStopFireWhileMoving) this.stopAutoFire();
 
     const distance = Phaser.Math.Distance.Between(x, y, this.x, this.y);
     const speed = distance * (1 - this.velocity / 1000);
@@ -164,8 +161,21 @@ export class Player extends Phaser.Physics.Arcade.Sprite {
       x: x,
       ease: "Linear",
       onComplete: () => {
-        this.startAutoFire();
+        if (GameConfig.playerStopFireWhileMoving) this.startAutoFire();
       },
     });
+  }
+
+  public set enemyTarget(enemyTarget: Player) {
+    this._enemyTarget = enemyTarget;
+    this.enableCollision();
+  }
+
+  public get bulletDamage(): number {
+    return this._bulletDamage;
+  }
+
+  public get enemyTarget(): Player {
+    return this._enemyTarget;
   }
 }

@@ -30,7 +30,8 @@ export class Bullets extends Phaser.Physics.Arcade.Group {
 
     if (bullet) {
       bullet.setImmovable(true);
-      bullet.body.setSize(10);
+      bullet.body.setSize(Bullet.hitboxSize.width, Bullet.hitboxSize.height);
+      bullet.body.enable = true;
       bullet.fireAt(fromObject, toObject, this.velocity);
     }
   }
