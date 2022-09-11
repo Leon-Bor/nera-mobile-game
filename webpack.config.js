@@ -102,7 +102,7 @@ const config = {
       ],
     }),
     new DefinePlugin({
-      ENVIRONMENT: JSON.stringify('environment') 
+      ENVIRONMENT: JSON.stringify(environment) 
     })
   ],
   devServer: {

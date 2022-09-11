@@ -1,3 +1,5 @@
+console.log(`Environment: ${ENVIRONMENT}`);
+
 export const GameConfig = {
   gameName: "Unicellular Battle",
   debug: ENVIRONMENT === "production" ? false : true,
