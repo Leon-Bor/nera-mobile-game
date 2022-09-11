@@ -5,11 +5,12 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { DefinePlugin } = require("webpack");
-const GitRevisionPlugin = require('git-revision-webpack-plugin');
+const { GitRevisionPlugin } = require('git-revision-webpack-plugin')
 const gitRevisionPlugin = new GitRevisionPlugin();
 const isProduction = process.env.NODE_ENV === "production";
 const environment = isProduction ? "production" : "development"
 console.log(`Environment: ${environment}`)
+ 
 const babelOptions = {
   presets: [
     [
