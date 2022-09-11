@@ -88,7 +88,7 @@ const config = {
       }),
     ],
   },
-  plugins: [
+  plugins: [gitRevisionPlugin,
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
       template: "index.html",
