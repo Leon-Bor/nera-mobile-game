@@ -4,6 +4,7 @@ import "reflect-metadata";
 import { LoadingScene } from "./scenes/loading.scene";
 import { GameScene } from "./scenes/game.scene";
 import { createUi } from "./main";
+import { GameConfig } from "./game.config";
 
 declare global {
   interface Window {
@@ -26,7 +27,8 @@ const phaserConfig: Types.Core.GameConfig = {
   physics: {
     default: "arcade",
     arcade: {
-      debug: true,
+      debug: GameConfig.debug,
+      gravity: { y: 0, x: 0 },
     },
   },
   render: {

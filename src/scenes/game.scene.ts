@@ -27,6 +27,9 @@ export class GameScene extends Scene {
 
     this.player = new Player();
     this.enemy = new Enemy();
+
+    this.player.enemyTarget = this.enemy;
+    this.enemy.enemyTarget = this.player;
   }
 
   create(): void {
@@ -34,6 +37,9 @@ export class GameScene extends Scene {
     state$().subscribe(({ ui }) => {
       console.log(ui);
     });
+
+    this.player.startAutoFire();
+    this.enemy.startAutoFire();
 
     // this.input.on(
     //   Phaser.Input.Events.POINTER_DOWN,

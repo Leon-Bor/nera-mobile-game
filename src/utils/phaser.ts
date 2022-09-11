@@ -1,7 +1,8 @@
-console.log("(window as any).game", (window as any).game);
-
 export const phaserGame = () => {
+  const game = (window as any).game as Phaser.Game;
   return {
-    scaleManager: (window as any).game.scale as Phaser.Scale.ScaleManager,
+    scaleManager: game.scale as Phaser.Scale.ScaleManager,
+    sceneManager: game.scene as Phaser.Scenes.SceneManager,
+    game: game,
   };
 };

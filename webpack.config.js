@@ -108,5 +108,6 @@ const config = {
     watchFiles: ["./*"],
     liveReload: true,
   },
+  devtool: "source-map"
 };
 module.exports = config;
