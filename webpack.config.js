@@ -7,6 +7,7 @@ const CopyWebpackPlugin = require("copy-webpack-plugin");
 const { DefinePlugin } = require("webpack");
 const isProduction = process.env.NODE_ENV === "production";
 const environment = isProduction ? "production" : "development"
+console.log(`Environment: ${environment}`)
 const babelOptions = {
   presets: [
     [
@@ -69,7 +70,7 @@ const config = {
     extensions: [".ts", ".js", ".tsx", ".json"],
   },
   optimization: {
-    minimize: true,
+    minimize: isProduction ? true : false,
     minimizer: [
       new TerserPlugin({
         extractComments: false,
@@ -101,7 +102,7 @@ const config = {
       ],
     }),
     new DefinePlugin({
-      ENVIRONMENT: environment
+      ENVIRONMENT: JSON.stringify('environment') 
     })
   ],
   devServer: {

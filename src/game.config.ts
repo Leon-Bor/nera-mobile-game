@@ -1,5 +1,3 @@
-declare const ENVIRONMENT: string;
-
 export const GameConfig = {
   gameName: "Unicellular Battle",
   debug: ENVIRONMENT === "production" ? false : true,
