@@ -2,8 +2,10 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export enum Scenes {
   LoadingScene = "LoadingScene",
+  MenuScene = "MenuScene",
   GameScene = "GameScene",
 }
+
 // Define a type for the slice state
 export interface ISceneState {
   name: Scenes;

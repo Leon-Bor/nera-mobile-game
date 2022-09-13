@@ -5,6 +5,7 @@ import { LoadingScene } from "./scenes/loading.scene";
 import { GameScene } from "./scenes/game.scene";
 import { createUi } from "./main";
 import { GameConfig } from "./game.config";
+import { MenuScene } from "./scenes/menu.scene";
 
 declare global {
   interface Window {
@@ -42,7 +43,7 @@ const phaserConfig: Types.Core.GameConfig = {
   audio: {
     disableWebAudio: false,
   },
-  scene: [LoadingScene, GameScene],
+  scene: [LoadingScene, MenuScene, GameScene],
   plugins: {
     scene: [
       { key: "SpinePlugin", plugin: window.SpinePlugin, mapping: "spine" },
