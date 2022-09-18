@@ -2,9 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useScreenResolution } from "./hooks/useScreenResolution";
 import { useSelector } from "./hooks/useReduxHooks";
 import { useObservable } from "./hooks/useObserver";
-import { HealthBar } from "./components/healthBar/healthBar";
+import { HealthBar } from "./components/healthBar/healthBar.component";
 import css from "./app.module.scss";
 import { GameConfig } from "./game.config";
+import { MenuView } from "./views/menu/menu.view";
 
 export const App = () => {
   const { size, scale } = useScreenResolution();
@@ -26,6 +27,8 @@ export const App = () => {
           transform: `scale3d(${scale}, ${scale},1)`,
         }}
       >
+        <MenuView />
+
         <HealthBar
           position="top"
           current={enemyHealth || 0}

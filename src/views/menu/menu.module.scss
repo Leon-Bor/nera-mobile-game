@@ -1,0 +1,25 @@
+.menuView {
+  display: grid;
+  grid-template-rows: 1fr 2fr;
+  height: 100%;
+
+  .playButton {
+    margin-bottom: 100px;
+  }
+
+  .top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    padding-left: 150px;
+    padding-right: 150px;
+  }
+}
