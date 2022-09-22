@@ -5,9 +5,9 @@ export const GameConfig = {
   debug: ENVIRONMENT === "production" ? false : false,
   playerStopFireWhileMoving: false,
   playerHealth: 100,
-  playerVelocity: 100, // 0-1000
+  playerVelocity: 500, // 0-1000
   playerFireFrquency: 800, // in ms
   bulletVelocity: 500,
-  bulletDamage: 5,
+  bulletDamage: 0.1,
   bulletsPerPlayer: 10,
 };

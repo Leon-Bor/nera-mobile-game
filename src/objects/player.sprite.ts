@@ -174,13 +174,15 @@ export class Player
     if (GameConfig.playerStopFireWhileMoving) this.stopAutoFire();
 
     const distance = Phaser.Math.Distance.Between(x, y, this.x, this.y);
-    const speed = distance * (1 - this.velocity / 1000);
+    const speed = distance * (1000 / this.velocity);
+
     this.playerMoveTween = this.scene.add.tween({
       targets: this,
       duration: speed,
       y: y,
       x: x,
       ease: "Linear",
+
       onComplete: () => {
         this.fire();
         if (GameConfig.playerStopFireWhileMoving) this.startAutoFire();
