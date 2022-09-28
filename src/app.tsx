@@ -27,8 +27,8 @@ export const App = () => {
           transform: `scale3d(${scale}, ${scale},1)`,
         }}
       >
-        <MenuView />
-
+        {/* <MenuView /> */}
+        {/* 
         <HealthBar
           position="top"
           current={enemyHealth || 0}
@@ -38,7 +38,7 @@ export const App = () => {
           position="bottom"
           current={playerHealth || 0}
           max={GameConfig.playerHealth}
-        />
+        /> */}
       </div>
     </div>
   );

@@ -15,7 +15,7 @@ export class LoadingScene extends Scene {
   }
 
   create(): void {
-    this.scene.start(Scenes.GameScene);
+    this.scene.start(Scenes.MenuScene);
   }
   preload(): void {
     this.createProgressBar();
