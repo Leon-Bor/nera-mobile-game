@@ -4,7 +4,7 @@ import css from "./button.module.scss";
 
 export interface IButton {
   disabled?: boolean;
-  onClick?: () => {};
+  onClick?: () => void;
   children: string;
   fullWidth?: boolean;
   size?: "normal" | "large";
@@ -17,6 +17,7 @@ export const Button = ({
   fullWidth = false,
   size = "normal",
   className = "",
+  onClick = () => {},
 }: IButton): JSX.Element => {
   return (
     <button
@@ -25,6 +26,7 @@ export const Button = ({
         [css.isFullWidth]: fullWidth,
         [css[size]]: true,
       })}
+      onClick={onClick}
     >
       {children}
     </button>

@@ -10,7 +10,7 @@ export class Bullets extends Phaser.Physics.Arcade.Group {
 
   constructor(name: string, velocity: number) {
     const { sceneManager } = phaserGame();
-    const scene = sceneManager.getScene(Scenes.GameScene);
+    const scene = sceneManager.getScene(Scenes.Game);
     super(scene.physics.world, scene);
 
     this.name = name;

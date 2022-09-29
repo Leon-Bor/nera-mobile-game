@@ -12,14 +12,14 @@ export class GameScene extends Scene {
   private enemy!: Enemy;
 
   public constructor() {
-    super(Scenes.GameScene);
+    super(Scenes.Game);
   }
 
   preload(): void {
+    store.dispatch(setActiveScene({ name: Scenes.Game, scene: this }));
+
     const { scaleManager } = phaserGame();
     const { baseSize } = scaleManager;
-
-    store.dispatch(setActiveScene({ name: Scenes.GameScene, scene: this }));
 
     this.matchfield = new Phaser.GameObjects.Sprite(this, 0, 0, "matchfield");
     this.matchfield.setOrigin(0, 0);

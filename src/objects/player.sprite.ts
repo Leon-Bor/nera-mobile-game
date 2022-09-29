@@ -31,7 +31,7 @@ export class Player
   public constructor(name: string = "player") {
     const { scaleManager, sceneManager } = phaserGame();
     super(
-      sceneManager.getScene(Scenes.GameScene),
+      sceneManager.getScene(Scenes.Game),
       scaleManager.baseSize.width / 2,
       (scaleManager.baseSize.height / 4) * 3,
       "player"
@@ -93,7 +93,7 @@ export class Player
 
     lostGameText.setOrigin(0.5, 0.5);
 
-    sceneManager.pause(Scenes.GameScene);
+    sceneManager.pause(Scenes.Game);
   }
 
   public startAutoFire(): void {

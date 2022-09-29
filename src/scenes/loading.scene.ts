@@ -11,13 +11,15 @@ export class LoadingScene extends Scene {
   assetText: Phaser.GameObjects.Text;
 
   constructor() {
-    super(Scenes.LoadingScene);
+    super(Scenes.Loading);
   }
 
   create(): void {
-    this.scene.start(Scenes.MenuScene);
+    this.scene.start(Scenes.Menu);
   }
   preload(): void {
+    store.dispatch(setActiveScene({ name: Scenes.Loading, scene: this }));
+
     this.createProgressBar();
     this.loadAssets();
   }
@@ -29,8 +31,6 @@ export class LoadingScene extends Scene {
   }
 
   createProgressBar(): void {
-    store.dispatch(setActiveScene({ name: Scenes.LoadingScene, scene: this }));
-
     var width = this.cameras.main.width;
     var height = this.cameras.main.height;
     const progressBarMaxWidth = 600;

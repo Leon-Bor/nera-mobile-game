@@ -1,13 +1,16 @@
 import { Scene } from "phaser";
 import { Button } from "../objects/button.container";
-import { Scenes } from "../state/reducers/scene.reducer";
+import { Scenes, setActiveScene } from "../state/reducers/scene.reducer";
+import { store } from "../state/store";
 
 export class MenuScene extends Scene {
   public constructor() {
-    super(Scenes.MenuScene);
+    super(Scenes.Menu);
   }
 
-  preload(): void {}
+  preload(): void {
+    store.dispatch(setActiveScene({ name: Scenes.Menu, scene: this }));
+  }
 
   create(): void {
     console.log("now menu scene");

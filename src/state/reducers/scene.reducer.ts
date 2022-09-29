@@ -1,9 +1,10 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 export enum Scenes {
-  LoadingScene = "LoadingScene",
-  MenuScene = "MenuScene",
-  GameScene = "GameScene",
+  Loading = "Loading",
+  Menu = "Menu",
+  Queue = "Queue",
+  Game = "Game",
 }
 
 // Define a type for the slice state
@@ -14,7 +15,7 @@ export interface ISceneState {
 
 // Define the initial state using that type
 const initialState: ISceneState = {
-  name: Scenes.LoadingScene,
+  name: Scenes.Loading,
   scene: new Phaser.Scene("init"),
 };
 

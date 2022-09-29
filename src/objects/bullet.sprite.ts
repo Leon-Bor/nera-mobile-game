@@ -13,7 +13,7 @@ export class Bullet
 
   public constructor() {
     const { sceneManager } = phaserGame();
-    super(sceneManager.getScene(Scenes.GameScene), 0, 0, "bullet");
+    super(sceneManager.getScene(Scenes.Game), 0, 0, "bullet");
     this.setScale(1.5);
     this.setOrigin(0.5, 0);
   }
